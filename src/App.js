@@ -29,6 +29,19 @@ function App() {
     };
     getPost();
   }, []);
+  
+   const deletePost = async (id) => {
+    try {
+      await axios.delete(`${BASE_API_URL}/posts/${id}`);
+      setPosts(
+        posts.filter((post) => {
+          return post.id !== id;
+        })
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div className="app">
